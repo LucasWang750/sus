@@ -8,9 +8,12 @@ sus(1 > 2){
     x = 5;
 } 
 
+report(4+4);
+>8
+
 Program Syntax
 
-program = "print", "(", expression, ")", ";" ;
+program = "report", "(", expression, ")", ";" ;
 
 expression = number, { ("+"|"-"), number }, ";" ;
 
