@@ -1,9 +1,25 @@
-from ply import lex, yacc
+from rply import LexerGenerator
 
-tokens = ["PLUS", "MINUS", "ADD", "SUBTRACT"]
+class Lexer():
+    def __init__(self):
+        self.lexer = LexerGenerator()
+    
+    def _add_tokens(self):
+        # Print
+        self.lexer.add('PRINT', r'report')
+        # Parenthesis
+        self.lexer.add('OPEN_PAREN', r'\(')
+        self.lexer.add('CLOSE_PAREN', r'\)')
+        # Semi Colon
+        self.lexer.add('SEMI_COLON', r'\;')
+        # Operators
+        self.lexer.add('SUM', r'\+')
+        self.lexer.add('SUB', r'\-')
+        # Number
+        self.lexer.add('NUMBER', r'\d+')
+        # Ignore spaces
+        self.lexer.ignore('\s+')
 
-t_PLUS = r'\+'
-
-def t_error(t):
-    print(f"Illegal character {t.value[0]!r}")
-    t.lexer.skip(1)
+    def get_lexer(self):
+        self._add_tokens()
+        return self.lexer.build()
